@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Barangay Dumanguena | Digital Government System</title>
+
+  <meta name="description" content="E-Barangay Dumanguena — Digital Government System for barangay services, documents, and payments.">
+  <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+  <link rel="shortcut icon" href="assets/logo-icon.svg">
+  <link rel="apple-touch-icon" href="assets/logo-icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/ebarangay-ui.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script>
+(function(){try{var t=localStorage.getItem('ebarangay_theme');
+if(t==='dark'||(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches))
+document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();
+</script>
+</head>
+<body>
+
+
+<div id="publicSite" class="public-site">
+  <header class="pub-header" id="pubHeader">
+    <div class="pub-header-inner">
+      <a href="#" class="pub-brand" onclick="showPublicRoom('home');return false;">
+        <img src="assets/ebarangay-logo.svg" alt="" onerror="this.style.display='none'">
+        <span>E-Barangay Dumanguena Portal</span>
+      </a>
+      <button type="button" class="pub-nav-toggle" id="pubNavToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      <nav class="pub-nav" id="pubNav">
+        <a href="#" class="pub-nav-link active" data-room="home" onclick="showPublicRoom('home');return false;">Home</a>
+        <a href="#" class="pub-nav-link" data-room="about" onclick="showPublicRoom('about');return false;">About</a>
+        <a href="#" class="pub-nav-link" data-room="services" onclick="showPublicRoom('services');return false;">Services</a>
+        <a href="#" class="pub-nav-link" data-room="officials" onclick="showPublicRoom('officials');return false;">Barangay Officials</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="pub-rooms">
+    <!-- HOME ROOM = Login -->
+    <section class="pub-room is-active" id="room-home" data-room="home">
+<div class="login-screen" id="loginScreen" style="display:flex;min-height:calc(100vh - 64px);">
+  
+
+  <div class="login-layout login-layout-phones">
+
+    <!-- LEFT: Welcome / Get Started (matches phone mockup) -->
+    <section class="eb-welcome-panel" aria-label="Welcome">
+      <div class="eb-welcome-inner">
+        <div class="eb-welcome-logo">
+           <div class="eb-logo-mark eb-logo-seal"><img src="assets/barangay-seal.png" alt="Barangay seal" onerror="this.style.display='none'"></div>
+          <div class="eb-welcome-logo-fallback" aria-hidden="true">
+            <i class="fas fa-house-chimney"></i>
+          </div>
+        </div>
+        <h1 class="eb-welcome-title">E-BARANGAY</h1>
+        <p class="eb-welcome-place">Dumanguena, Narra, Palawan</p>
+
+        <div class="eb-welcome-art" aria-hidden="true">
+          <!-- Simple flat house illustration -->
+          <svg class="eb-house-svg" viewBox="0 0 280 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="140" cy="178" rx="100" ry="12" fill="rgba(255,255,255,0.2)"/>
+            <!-- trees -->
+            <circle cx="48" cy="120" r="22" fill="rgba(255,255,255,0.25)"/>
+            <rect x="44" y="120" width="8" height="36" rx="2" fill="rgba(255,255,255,0.35)"/>
+            <circle cx="232" cy="128" r="18" fill="rgba(255,255,255,0.22)"/>
+            <rect x="228" y="128" width="7" height="30" rx="2" fill="rgba(255,255,255,0.35)"/>
+            <!-- house body -->
+            <path d="M70 110 L140 55 L210 110 Z" fill="rgba(255,255,255,0.95)"/>
+            <rect x="88" y="110" width="104" height="70" rx="4" fill="#fff"/>
+            <rect x="120" y="130" width="40" height="50" rx="3" fill="#0B7468"/>
+            <rect x="100" y="125" width="22" height="18" rx="2" fill="#42CDBA"/>
+            <rect x="158" y="125" width="22" height="18" rx="2" fill="#42CDBA"/>
+            <circle cx="152" cy="155" r="2.5" fill="#A7E3D9"/>
+          </svg>
+        </div>
+
+        <button type="button" class="btn eb-btn-getstarted" onclick="ebFocusLogin()">
+          DIGITAL GOVERNMENT SYSTEM
+        </button>
+      </div>
+    </section>
+
+    <!-- RIGHT: Login form (matches phone mockup) -->
+    <section class="eb-auth-panel" aria-label="Login">
+      <div class="login-card login-card-phone" id="loginCardPanel">
+        <div class="eb-auth-top-logo">
+          <img src="assets/ebarangay-logo.svg" alt="" onerror="this.style.display='none'">
+        </div>
+
+        <h2 class="login-title">Welcome Back!</h2>
+        <p class="login-subtitle">Log in to your account</p>
+
+        <div id="loginForm">
+          <div class="form-group login-field">
+            <div class="input-with-icon eb-field">
+              <i class="fas fa-user-tag eb-field-icon"></i>
+              <select id="loginRole" class="login-role-select" aria-label="Select user role" onchange="onLoginRoleChange()">
+                <option value="" disabled selected>Select user role</option>
+                <option value="Resident">Resident</option>
+                <option value="Secretary">Secretary</option>
+                <option value="Treasurer">Treasurer</option>
+                <option value="Admin">Captain / Administrator</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group login-field" id="loginUsernameGroup" style="display:none;">
+            <div class="input-with-icon eb-field">
+              <i class="fas fa-user eb-field-icon"></i>
+              <input type="text" id="loginUsername" placeholder="Enter your username" autocomplete="username">
+            </div>
+          </div>
+          <div class="form-group login-field" id="loginPasswordGroup" style="display:none;">
+            <div class="input-with-icon eb-field">
+              <i class="fas fa-lock eb-field-icon"></i>
+              <input type="password" id="loginPassword" placeholder="Enter your password" autocomplete="current-password">
+              <button type="button" class="eb-eye" id="ebEye" onclick="ebTogglePassword()" aria-label="Show password">
+                <i class="fas fa-eye-slash"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="eb-auth-meta">
+            <label class="eb-remember">
+              <input type="checkbox" id="ebRemember"> Remember me
+            </label>
+            <a href="#" onclick="ebForgotPassword();return false;">Forgot password?</a>
+          </div>
+
+          <button type="button" class="btn btn-login-teal" id="btnSignIn" onclick="login(); return false;">Log In</button>
+          <p class="login-links">
+            Don't have an account? <a href="#" onclick="showRegisterForm();return false;">Register here</a>
+          </p>
+        </div>
+
+        
+        <div id="forgotForm" style="display:none;">
+          <h3 class="eb-reg-title">Forgot Password</h3>
+          <p class="eb-reg-sub" id="forgotStepHint">Enter your username to reset your password.</p>
+
+          <!-- Step 1: username -->
+          <div id="forgotStep1">
+            <div class="form-group login-field">
+              <div class="input-with-icon eb-field">
+                <i class="fas fa-user eb-field-icon"></i>
+                <input type="text" id="forgotUsername" placeholder="Username" autocomplete="username">
+              </div>
+            </div>
+            <button type="button" class="btn btn-login-teal" onclick="forgotFindAccount(); return false;">Continue</button>
+          </div>
+
+          <!-- Step 2: verify identity -->
+          <div id="forgotStep2" style="display:none;">
+            <div class="form-group login-field">
+              <label id="forgotVerifyLabel" style="display:block;margin-bottom:6px;font-size:12px;color:#5A7B76;">Verification</label>
+              <div class="input-with-icon eb-field">
+                <i class="fas fa-shield-halved eb-field-icon"></i>
+                <input type="text" id="forgotVerifyValue" placeholder="Verification details">
+              </div>
+            </div>
+            <button type="button" class="btn btn-login-teal" onclick="forgotVerifyIdentity(); return false;">Verify</button>
+          </div>
+
+          <!-- Step 3: new password -->
+          <div id="forgotStep3" style="display:none;">
+            <div class="form-group login-field">
+              <div class="input-with-icon eb-field">
+                <i class="fas fa-lock eb-field-icon"></i>
+                <input type="password" id="forgotNewPass" placeholder="New password (min 6 characters)">
+              </div>
+            </div>
+            <div class="form-group login-field">
+              <div class="input-with-icon eb-field">
+                <i class="fas fa-lock eb-field-icon"></i>
+                <input type="password" id="forgotNewPass2" placeholder="Confirm new password">
+              </div>
+            </div>
+            <button type="button" class="btn btn-login-teal" onclick="forgotResetPassword(); return false;">Reset Password</button>
+          </div>
+
+          <p class="login-links">
+            <a href="#" onclick="showLoginForm();return false;">← Back to Login</a>
+          </p>
+        </div>
+
+<div id="registerForm" style="display:none;">
+          <h3 class="eb-reg-title">Resident Registration</h3>
+          <p class="eb-reg-sub">Create your account. After login, scan your National ID in Profile.</p>
+          <div class="form-row">
+            <div class="form-group"><label>First Name *</label><input type="text" id="regFirstName"></div>
+            <div class="form-group"><label>Last Name *</label><input type="text" id="regLastName"></div>
+          </div>
+          <div class="form-group"><label>Middle Name</label><input type="text" id="regMiddleName"></div>
+          <div class="form-row">
+            <div class="form-group"><label>Username *</label><input type="text" id="regUsername" placeholder="Choose username"></div>
+            <div class="form-group"><label>Password *</label><input type="password" id="regPassword" placeholder="Choose password"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Gender *</label>
+              <select id="regGender"><option value="Male">Male</option><option value="Female">Female</option><option value="Other">Other</option></select>
+            </div>
+            <div class="form-group"><label>Civil Status *</label>
+              <select id="regCivilStatus">
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="Widowed">Widowed</option>
+                <option value="Separated">Separated</option>
+                <option value="Divorced">Divorced</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Birth Date</label><input type="date" id="regBirthDate"></div>
+            <div class="form-group"><label>Contact</label><input type="text" id="regContact" placeholder="09XXXXXXXXX"></div>
+          </div>
+          <div class="form-group"><label>Address *</label><input type="text" id="regAddress" placeholder="House No., Street"></div>
+          <div class="form-row">
+            <div class="form-group"><label>Purok *</label>
+              <select id="regPurok">
+                <option value="">Select purok</option>
+                <option value="Purok Bagong Lipunan">Purok Bagong Lipunan</option>
+                <option value="Purok Pag-asa">Purok Pag-asa</option>
+                <option value="Purok Maligaya">Purok Maligaya</option>
+                <option value="Purok Silangan">Purok Silangan</option>
+                <option value="Purok Masagana">Purok Masagana</option>
+                <option value="Purok Magsasaka">Purok Magsasaka</option>
+                <option value="Purok Tagbisay">Purok Tagbisay</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Occupation</label><input type="text" id="regOccupation" placeholder="e.g. Farmer, Student"></div>
+          </div>
+          <div class="form-group"><label>Proof of Residency</label><input type="text" id="regProof" placeholder="e.g. Utility Bill, Lease"></div>
+          <button type="button" class="btn btn-login-teal" id="btnRegister" onclick="submitRegistration(); return false;">Submit Registration</button>
+          <p class="login-links">
+            <a href="#" onclick="showLoginForm();return false;">← Back to Login</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+    </section>
+
+    <!-- ABOUT ROOM -->
+    <section class="pub-room" id="room-about" data-room="about">
+      <div class="pub-room-inner">
+        <h2>About E-Barangay System</h2>
+        <p class="pub-lead">This is a digital platform designed to serve the community through transparent, efficient, and accessible government services.</p>
+        <div class="pub-cards-3">
+          <div class="pub-card"><div class="pub-icon"><i class="fas fa-bullseye"></i></div><h3>Mission</h3><p>Deliver fast, secure, and resident-centered barangay services through a modern digital platform.</p></div>
+          <div class="pub-card"><div class="pub-icon"><i class="fas fa-eye"></i></div><h3>Vision</h3><p>A progressive system where every resident can access documents, records, and assistance online with ease.</p></div>
+          <div class="pub-card"><div class="pub-icon"><i class="fas fa-shield-halved"></i></div><h3>Commitment</h3><p>Accurate records, verified residency, accountable payments, and official documents you can trust.</p></div>
+        </div>
+        <div class="pub-banner">
+          <div><h3>LOCATION</h3><i class="fa fa-location-arrow" aria-hidden="true"></i><p>DUMANGUENA, NARRA, PALAWAN · Digital Government System</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S ROOM -->
+    <section class="pub-room" id="room-services" data-room="services">
+      <div class="pub-room-inner">
+        <h2>Barangay Services</h2>
+        <p class="pub-lead">Request certificates and official documents through the resident portal after registration and verification.</p>
+        <div class="pub-cards-4">
+          <div class="pub-card"><i class="fas fa-file-lines"></i><h4>Barangay Clearance</h4><p>For employment and local transactions.</p></div>
+          <div class="pub-card"><i class="fas fa-house-user"></i><h4>Certificate of Residency</h4><p>Proof of residency in Dumanguena.</p></div>
+          <div class="pub-card"><i class="fas fa-hand-holding-heart"></i><h4>Certificate of Indigency</h4><p>For medical and social assistance.</p></div>
+          <div class="pub-card"><i class="fas fa-briefcase"></i><h4>Business Permit</h4><p>Support for local business registration.</p></div>
+          <div class="pub-card"><i class="fas fa-user-group"></i><h4>Solo Parent Certificate</h4><p>For qualified solo parent beneficiaries.</p></div>
+          <div class="pub-card"><i class="fas fa-stamp"></i><h4>Barangay Certification</h4><p>General-purpose certifications.</p></div>
+          <div class="pub-card"><i class="fas fa-scale-balanced"></i><h4>Blotter / Incident</h4><p>Incident-related documentation.</p></div>
+          <div class="pub-card"><i class="fas fa-id-card"></i><h4>Resident Profiling</h4><p>Secure records by purok.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFICIALS ROOM -->
+    <section class="pub-room" id="room-officials" data-room="officials">
+      <div class="pub-room-inner">
+        <p class="pub-eyebrow">Officials</p>
+        <h2>Barangay Officials</h2>
+        <p class="pub-lead">Leaders serving Barangay Dumanguena.</p>
+        <div class="pub-cards-4">
+          <div class="pub-card pub-official"><div class="pub-avatar"><i class="fas fa-user-tie"></i></div><h4>Hon. Amy A. Diwara</h4><p class="role">Punong Barangay</p><p>Leads barangay administration and community programs.</p></div>
+          <div class="pub-card pub-official"><div class="pub-avatar"><i class="fas fa-user-tie"></i></div><h4>Barangay Secretary</h4><p class="role">Secretary</p><p>Resident verification, document review, and records.</p></div>
+          <div class="pub-card pub-official"><div class="pub-avatar"><i class="fas fa-user-tie"></i></div><h4>Barangay Treasurer</h4><p class="role">Treasurer</p><p>Payments, collections, and official receipts.</p></div>
+          <div class="pub-card pub-official"><div class="pub-avatar"><i class="fas fa-people-group"></i></div><h4>Sangguniang Barangay</h4><p class="role">Council</p><p>Local legislation and community development.</p></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="app" id="app">
+  <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+  <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+      <div class="eb-logo-pair" aria-hidden="true">
+        <div class="eb-logo-mark eb-logo-system"><img src="assets/ebarangay-logo.svg" alt="System logo"></div>
+      </div>
+  <div>
+  <h2>E-BARANGAY</h2>
+  <span>Dumanguena, Narra, Palawan</span>
+</div>
+</div>
+<ul class="nav-menu">
+  <li class="nav-section">Main</li>
+  <li class="nav-item nav-admin-only">
+    <a class="nav-link" data-module="dashboard" onclick="navigate('dashboard')">
+      <span class="icon"><i class="fas fa-chart-bar"></i></span> Dashboard
+    </a>
+  </li>
+
+  <li class="nav-section nav-admin-only">Management</li>
+  <li class="nav-item nav-admin-only nav-secretary-residents">
+    <a class="nav-link" data-module="residents" onclick="navigate('residents')">
+      <span class="icon"><i class="fas fa-users"></i></span> Residents
+    </a>
+  </li>
+  <li class="nav-item nav-admin-only">
+    <a class="nav-link" data-module="profiling" onclick="navigate('profiling')">
+      <span class="icon"><i class="fas fa-home"></i></span> Profiling
+    </a>
+  </li>
+  <li class="nav-item nav-admin-only">
+    <a class="nav-link" data-module="documents" onclick="navigate('documents')">
+      <span class="icon"><i class="fas fa-file-alt"></i></span> Documents
+    </a>
+  </li>
+  <li class="nav-item nav-admin-only">
+    <a class="nav-link" data-module="services" onclick="navigate('services')">
+      <span class="icon"><i class="fas fa-tools"></i></span> Services
+    </a>
+  </li>
+  <li class="nav-item nav-admin-only">
+    <a class="nav-link" data-module="payments" onclick="navigate('payments')">
+      <span class="icon"><i class="fas fa-money-bill-wave"></i></span> Payments
+    </a>
+  </li>
+
+  <li class="nav-section nav-secretary-only">Secretary</li>
+  <li class="nav-item nav-secretary-only">
+    <a class="nav-link" data-module="secretary" onclick="navigate('secretary')">
+      <span class="icon"><i class="fas fa-check-circle"></i></span> Review & Endorse
+    </a>
+  </li>
+
+  <li class="nav-section nav-treasurer-only">Treasurer</li>
+  <li class="nav-item nav-treasurer-only">
+    <a class="nav-link" data-module="treasurer" onclick="navigate('treasurer')">
+      <span class="icon"><i class="fas fa-cash-register"></i></span> Payment / GCash
+    </a>
+  </li>
+
+  <li class="nav-section nav-resident-only">Portal</li>
+  <li class="nav-item nav-resident-only">
+    <a class="nav-link" data-module="portal" onclick="navigate('portal')">
+      <span class="icon"><i class="fas fa-house-user"></i></span> Resident Portal
+    </a>
+  </li>
+  <li class="nav-item nav-resident-only">
+    <a class="nav-link" data-module="profile" onclick="navigate('profile')">
+      <span class="icon"><i class="fas fa-id-card"></i></span> My Profile
+    </a>
+  </li>
+  <li class="nav-item nav-resident-only">
+    <a class="nav-link" data-module="myrequests" onclick="navigate('myrequests')">
+      <span class="icon"><i class="fas fa-clipboard-list"></i></span> My Requests
+    </a>
+  </li>
+
+  <li class="nav-item nav-admin-only">
+    <a class="nav-link" data-module="reports" onclick="navigate('reports')">
+      <span class="icon"><i class="fas fa-chart-line"></i></span> Reports
+    </a>
+  </li>
+
+  <li class="nav-section">System</li>
+  <li class="nav-item">
+    <a class="nav-link" data-module="notifications" onclick="navigate('notifications')">
+      <span class="icon"><i class="fas fa-bell"></i></span> Notifications
+    </a>
+  </li>
+  <li class="nav-item nav-admin-only">
+    <a class="nav-link" data-module="admin" onclick="navigate('admin')">
+      <span class="icon"><i class="fas fa-user-shield"></i></span> Captain Admin
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onclick="openAccountModal()">
+      <span class="icon"><i class="fas fa-cog"></i></span> My Account
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onclick="logout()">
+      <span class="icon"><i class="fas fa-sign-out-alt"></i></span> Logout
+    </a>
+  </li>
+</ul>
+
+<div class="eb-side-user" onclick="openAccountModal()" title="My account">
+  <div class="user-avatar" id="userAvatar">A</div>
+  <div class="user-info-text">
+    <div class="user-name" id="userName">Admin</div>
+    <div class="user-role" id="userRole">Administrator</div>
+  </div>
+  <i class="fas fa-chevron-up"></i>
+</div>
+</aside>
+
+ <div class="main-content">
+  <header class="header">
+    <div class="header-left">
+      <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+      </button>
+      <h1 class="page-title" id="pageTitle">Dashboard</h1>
+    </div>
+    <div class="eb-search">
+      <i class="fas fa-search"></i>
+      <input type="text" id="ebGlobalSearch" placeholder="Search residents, documents, or requests..." autocomplete="off">
+    </div>
+    <div class="header-right">
+      <button class="notif-btn" onclick="navigate('notifications')" aria-label="Notifications">
+        <i class="fas fa-bell"></i>
+        <span class="notif-badge" id="notifBadge">0</span>
+      </button>
+      <div class="eb-head-avatar" id="ebHeadAvatar" onclick="openAccountModal()" title="My account">A</div>
+    </div>
+  </header>
+
+    <div class="content-area">
+
+    <!-- ===== BLUEPRINT 01 DASHBOARD — system overview and statistics ===== -->
+    <div class="module" id="module-dashboard">
+  <div class="eb-greeting">
+    <div>
+      <h2 class="eb-greet-title">Good day!</h2>
+      <p class="eb-greet-sub">Here's an overview of the barangay's records and requests.</p>
+    </div>
+    <div class="eb-date">
+      <i class="fas fa-calendar-days"></i>
+      <span><strong class="eb-date-main">—</strong><span class="eb-date-day"></span></span>
+    </div>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon green"><i class="fas fa-users"></i></div>
+      <div class="stat-info">
+        <h3 id="statResidents">0</h3>
+        <p>Total Residents</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon yellow"><i class="fas fa-user-friends"></i></div>
+      <div class="stat-info">
+        <h3 id="statSeniors">0</h3>
+        <p>Seniors</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon blue"><i class="fas fa-vote-yea"></i></div>
+      <div class="stat-info">
+        <h3 id="statVoters">0</h3>
+        <p>Voters</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon red"><i class="fas fa-file-alt"></i></div>
+      <div class="stat-info">
+        <h3 id="statPendingDocs">0</h3>
+        <p>Active Requests</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon purple"><i class="fas fa-money-bill-wave"></i></div>
+      <div class="stat-info">
+        <h3 id="statPendingPay">0</h3>
+        <p>Pending Payments</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon green"><i class="fas fa-tools"></i></div>
+      <div class="stat-info">
+        <h3 id="statServices">0</h3>
+        <p>Upcoming Services</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon yellow"><i class="fas fa-user-clock"></i></div>
+      <div class="stat-info">
+        <h3 id="statUnverifiedRes">0</h3>
+        <p>Unverified Residents</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="dash-analytics-grid">
+    <div class="card">
+      <div class="card-header"><h3><i class="fas fa-chart-pie"></i> Document Status</h3></div>
+      <div class="card-body">
+        <canvas id="dashChartDocs" height="180"></canvas>
+        <div id="dashDocStatusLegend" class="dash-legend"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><h3><i class="fas fa-users"></i> Residents by Purok</h3></div>
+      <div class="card-body">
+        <canvas id="dashChartPurok" height="180"></canvas>
+        <div id="dashPurokLegend" class="dash-legend"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><h3><i class="fas fa-money-bill-wave"></i> Payments Overview</h3></div>
+      <div class="card-body">
+        <canvas id="dashChartPay" height="180"></canvas>
+        <div id="dashPayLegend" class="dash-legend"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><h3><i class="fas fa-chart-line"></i> Quick Analytics</h3></div>
+      <div class="card-body">
+        <div id="dashQuickStats" class="dash-quick-stats"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3>Recent Document Requests</h3>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Resident</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="dashRecentDocs"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Captain / Admin: full transactions from Secretary + Treasurer -->
+  <div id="captainTxnOverview" style="display:none;">
+    <div class="card" style="margin-top:16px;">
+      <div class="card-header"><h3><i class="fas fa-file-alt"></i> All Document Transactions (Secretary)</h3></div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table>
+            <thead><tr><th>#</th><th>Type</th><th>Resident</th><th>Purpose</th><th>Fee</th><th>Status</th><th>Requested</th><th>Endorsed By</th><th>OR No.</th><th></th></tr></thead>
+            <tbody id="capDocsTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px;">
+      <div class="card-header"><h3><i class="fas fa-money-bill-wave"></i> All Payment Transactions (Treasurer)</h3></div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table>
+            <thead><tr><th>#</th><th>Date</th><th>Resident</th><th>Type</th><th>Amount</th><th>Method</th><th>OR / Ref</th><th>Status</th><th>Verified By</th></tr></thead>
+            <tbody id="capPaysTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <!-- ===== BLUEPRINT 02 RESIDENT MANAGEMENT — resident records and actions ===== -->
+    <div class="module" id="module-residents">
+        <div class="card">
+          <div class="card-header"><h3>Resident Information (Management)</h3><button class="btn btn-primary btn-sm" onclick="openResidentModal()">+ Add Resident</button></div>
+          <div class="card-body">
+            <div class="search-bar"><input type="text" id="resSearch" placeholder="Search..." oninput="renderResidents()"></div>
+            <div class="table-responsive"><table><thead><tr><th>#</th><th>Photo</th><th>Name</th><th>Purok</th><th>Address</th><th>Contact</th><th>Tags</th><th>Actions</th></tr></thead><tbody id="residentsTable"></tbody></table></div>
+          </div>
+        </div>
+
+        <div class="card" id="purokRecordsCard">
+          <div class="card-header">
+            <h3><i class="fas fa-map-marker-alt"></i> Resident Information Records — by Purok</h3>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+              <select id="purokFilterSelect" onchange="renderPurokResidentRecords()" class="eb-select">
+                <option value="all">All Puroks</option>
+                <option value="Purok Bagong Lipunan">Purok Bagong Lipunan</option>
+                <option value="Purok Pag-asa">Purok Pag-asa</option>
+                <option value="Purok Maligaya">Purok Maligaya</option>
+                <option value="Purok Silangan">Purok Silangan</option>
+                <option value="Purok Masagana">Purok Masagana</option>
+                <option value="Purok Magsasaka">Purok Magsasaka</option>
+                <option value="Purok Tagbisay">Purok Tagbisay</option>
+              </select>
+              <input type="text" id="purokSearchInput" placeholder="Search name, address…" oninput="renderPurokResidentRecords()" style="min-width:180px;">
+            </div>
+          </div>
+          <div class="card-body">
+            <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">
+              Click a <strong>Purok card</strong> to list verified residents in that purok and view their personal information.
+            </p>
+            <div id="purokRecordsStats" class="stats-grid" style="margin-bottom:14px;"></div>
+            <div id="purokRecordsBody"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ===== BLUEPRINT 03 SECRETARY — verification, document review, endorsement ===== -->
+    <div class="module" id="module-secretary">
+  <div class="eb-greeting">
+    <div>
+      <h2 class="eb-greet-title">Secretary Dashboard</h2>
+      <p class="eb-greet-sub">Residency verification, document review &amp; endorsement.</p>
+    </div>
+    <div class="eb-date">
+      <i class="fas fa-calendar-days"></i>
+      <span><strong class="eb-date-main">—</strong><span class="eb-date-day"></span></span>
+    </div>
+  </div>
+  
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-icon yellow">⏳</div><div class="stat-info"><h3 id="secStatPendingRes">0</h3><p>Pending Residency</p></div></div>
+          <div class="stat-card"><div class="stat-icon blue">📄</div><div class="stat-info"><h3 id="secStatPendingDocs">0</h3><p>Pending Documents</p></div></div>
+          <div class="stat-card"><div class="stat-icon green">✓</div><div class="stat-info"><h3 id="secStatVerified">0</h3><p>Verified Residents</p></div></div>
+          <div class="stat-card"><div class="stat-icon purple">📝</div><div class="stat-info"><h3 id="regStatPending">0</h3><p>Pending Registrations</p></div></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>Pending Account Registrations</h3></div>
+          <div class="card-body"><div class="table-responsive"><table><thead><tr><th>#</th><th>Username</th><th>Name</th><th>Address</th><th>Purok</th><th>Contact</th><th>Submitted</th><th>Actions</th></tr></thead><tbody id="pendingRegTableSec"></tbody></table></div></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>Residency Verification</h3></div>
+          <div class="card-body"><div class="table-responsive"><table><thead><tr><th>#</th><th>Photo</th><th>Name</th><th>Purok</th><th>Address</th><th>Proof</th><th>National ID</th><th>Actions</th></tr></thead><tbody id="secPendingResTable"></tbody></table></div></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>Document Requests — Review &amp; Endorse</h3></div>
+          <div class="card-body"><div class="table-responsive"><table><thead><tr><th>ID</th><th>Type</th><th>Resident</th><th>Purpose</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead><tbody id="secPendingDocsTable"></tbody></table></div></div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3>📊 Document Transaction Report</h3>
+            <button class="btn btn-sm btn-outline" onclick="printSecReport()" style="width:auto;">🖨 Print Report</button>
+          </div>
+          <div class="card-body">
+            <div class="report-filters" style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:14px;align-items:flex-end;">
+              <div class="form-group" style="margin:0;"><label>From Date</label><input type="date" id="secReportFrom" onchange="renderSecReport()"></div>
+              <div class="form-group" style="margin:0;"><label>To Date</label><input type="date" id="secReportTo" onchange="renderSecReport()"></div>
+              <div class="form-group" style="margin:0;"><label>Status</label>
+                <select id="secReportStatus" onchange="renderSecReport()">
+                  <option value="all">All Status</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Under Review">Under Review</option>
+                  <option value="Payment Pending">Payment Pending</option>
+                  <option value="Released">Released</option>
+                  <option value="Rejected">Rejected</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin:0;"><label>Document Type</label>
+                <select id="secReportType" onchange="renderSecReport()">
+                  <option value="all">All Types</option>
+                </select>
+              </div>
+            </div>
+            <div class="report-grid" id="secReportStats" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:14px;"></div>
+            <div class="table-responsive">
+              <table>
+                <thead><tr><th>#</th><th>Date</th><th>Type</th><th>Resident</th><th>Purpose</th><th>Fee</th><th>Status</th><th>Endorsed By</th></tr></thead>
+                <tbody id="secReportTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3><i class="fas fa-file-alt"></i> Document Types &amp; Certificate Format</h3>
+            <button class="btn btn-primary btn-sm" onclick="openAddDocType()">+ Add Document Type</button>
+          </div>
+          <div class="card-body">
+            <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">
+              Manage document types and their <strong>official PDF template</strong> (from <code>assets/</code>).
+              Viewing, sending, and downloading a document uses this PDF file directly.
+            </p>
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr><th>#</th><th>Document Type</th><th>Fee</th><th>PDF Template</th><th>Actions</th></tr>
+                </thead>
+                <tbody id="docTypesTableSec"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== BLUEPRINT 04 TREASURER — payments, GCash and financial reports ===== -->
+    <div class="module" id="module-treasurer">
+  <div class="eb-greeting">
+    <div>
+      <h2 class="eb-greet-title">Treasurer Dashboard</h2>
+      <p class="eb-greet-sub">Payment collection, GCash verification &amp; receipts.</p>
+    </div>
+    <div class="eb-date">
+      <i class="fas fa-calendar-days"></i>
+      <span><strong class="eb-date-main">—</strong><span class="eb-date-day"></span></span>
+    </div>
+  </div>
+  
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-icon yellow">⏳</div><div class="stat-info"><h3 id="treasStatPending">0</h3><p>Pending Payments</p></div></div>
+          <div class="stat-card"><div class="stat-icon green">💵</div><div class="stat-info"><h3 id="treasStatCollected">₱0</h3><p>Collected (Verified)</p></div></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>📱 GCash Payment Account</h3></div>
+          <div class="card-body">
+            <div style="background:#EAFBF6;border:1px solid #A7E3D9;border-radius:12px;padding:16px;max-width:360px;">
+              <p style="font-size:13px;margin-bottom:4px;"><strong>Barangay GCash Account</strong></p>
+              <p style="font-size:20px;font-weight:700;color:#076054;" id="gcashNumber">0985-180-2847</p>
+              <p style="font-size:13px;color:#6b7280;" id="gcashName">Barangay Dumanguena</p>
+              <p style="font-size:12px;margin-top:8px;color:#6b7280;">Resident submits GCash reference as proof. Review the transaction in your GCash account, then <strong>Verify &amp; Collect</strong>.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>Pending Payments (Cash / GCash)</h3></div>
+          <div class="card-body"><div class="table-responsive"><table><thead><tr><th>ID</th><th>Resident</th><th>Type</th><th>Amount</th><th>Date</th><th>Actions</th></tr></thead><tbody id="treasPendingTable"></tbody></table></div></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>All Payments</h3></div>
+          <div class="card-body"><div class="table-responsive"><table><thead><tr><th>#</th><th>Resident</th><th>Type</th><th>Amount</th><th>OR No.</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead><tbody id="treasAllTable"></tbody></table></div></div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>📊 Payment Transaction Report</h3>
+            <button class="btn btn-sm btn-outline" onclick="printTreasReport()" style="width:auto;">🖨 Print Report</button>
+          </div>
+          <div class="card-body">
+            <div class="report-filters">
+              <div class="form-group">
+                <label>From Date</label>
+                <input type="date" id="treasReportFrom">
+              </div>
+              <div class="form-group">
+                <label>To Date</label>
+                <input type="date" id="treasReportTo">
+              </div>
+              <div class="form-group">
+                <label>Status</label>
+                <select id="treasReportStatus">
+                  <option value="all">All</option>
+                  <option value="Paid">Paid / Verified</option>
+                  <option value="Pending">Pending</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Method</label>
+                <select id="treasReportMethod">
+                  <option value="all">All Methods</option>
+                  <option value="GCash">GCash</option>
+                  <option value="Cash">Cash</option>
+                </select>
+              </div>
+              <button class="btn btn-primary btn-sm" style="width:auto;" onclick="renderTreasReport()">Apply Filter</button>
+            </div>
+            <div class="report-grid" id="treasReportStats">
+              <div class="report-stat"><h4 id="trStatTotal">₱0</h4><p>Total Amount</p></div>
+              <div class="report-stat"><h4 id="trStatCount">0</h4><p>Transactions</p></div>
+              <div class="report-stat"><h4 id="trStatPaid">₱0</h4><p>Verified / Paid</p></div>
+              <div class="report-stat"><h4 id="trStatPending">0</h4><p>Pending Count</p></div>
+              <div class="report-stat"><h4 id="trStatGcash">₱0</h4><p>GCash Total</p></div>
+              <div class="report-stat"><h4 id="trStatCash">₱0</h4><p>Cash Total</p></div>
+              <div class="report-stat"><h4 id="trStatAvg">₱0</h4><p>Average Amount</p></div>
+              <div class="report-stat"><h4 id="trStatPaidCount">0</h4><p>Paid Count</p></div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0;">
+              <div class="card" style="margin:0;box-shadow:none;border:1px solid var(--border);">
+                <div class="card-header"><h3>By Fee Type</h3></div>
+                <div class="card-body">
+                  <canvas id="treasChartType" style="width:100%;max-height:180px;"></canvas>
+                  <div id="treasByType" style="margin-top:10px;"></div>
+                </div>
+              </div>
+              <div class="card" style="margin:0;box-shadow:none;border:1px solid var(--border);">
+                <div class="card-header"><h3>Monthly History</h3></div>
+                <div class="card-body">
+                  <canvas id="treasChartMonth" style="width:100%;max-height:180px;"></canvas>
+                  <div id="treasByMonth" style="margin-top:10px;"></div>
+                </div>
+              </div>
+            </div>
+            <h4 style="font-size:14px;margin:8px 0 10px;color:var(--primary);">Transaction History</h4>
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th><th>Date</th><th>Resident</th><th>Type</th><th>Method</th>
+                    <th>OR / Ref</th><th>Amount</th><th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="treasReportTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== BLUEPRINT 05 PROFILING — household/resident profiling ===== -->
+    <div class="module" id="module-profiling">
+        <p id="profAutoNote" style="font-size:12px;color:var(--text-muted);margin-bottom:12px;padding:10px 12px;background:var(--primary-soft);border-radius:8px;border:1px solid var(--border);"></p>
+        <div class="stats-grid" style="margin-bottom:18px;">
+          <div class="stat-card"><div class="stat-icon green">👥</div><div class="stat-info"><h3 id="profStatPop">0</h3><p>Registered</p></div></div>
+          <div class="stat-card"><div class="stat-icon blue">♂</div><div class="stat-info"><h3 id="profStatMale">0</h3><p>Male</p></div></div>
+          <div class="stat-card"><div class="stat-icon purple">♀</div><div class="stat-info"><h3 id="profStatFemale">0</h3><p>Female</p></div></div>
+          <div class="stat-card"><div class="stat-icon yellow">👴</div><div class="stat-info"><h3 id="profStatSenior">0</h3><p>Seniors</p></div></div>
+          <div class="stat-card"><div class="stat-icon red">♿</div><div class="stat-info"><h3 id="profStatPwd">0</h3><p>PWD</p></div></div>
+          <div class="stat-card"><div class="stat-icon blue">🗳</div><div class="stat-info"><h3 id="profStatVoter">0</h3><p>Voters</p></div></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>Barangay Profiling</h3></div>
+          <div class="card-body">
+            <div class="form-row"><div class="form-group"><label>Barangay Name</label><input type="text" id="profName"></div><div class="form-group"><label>City</label><input type="text" id="profCity"></div><div class="form-group"><label>Province</label><input type="text" id="profProvince"></div></div>
+            <div class="form-row"><div class="form-group"><label>Population</label><input type="number" id="profPopulation"></div><div class="form-group"><label>Households</label><input type="number" id="profHouseholds"></div><div class="form-group"><label>Puroks</label><input type="number" id="profPuroks"></div></div>
+            <div class="form-row"><div class="form-group"><label>Captain</label><input type="text" id="profCaptain"></div><div class="form-group"><label>Contact</label><input type="text" id="profContact"></div><div class="form-group"><label>Email</label><input type="email" id="profEmail"></div></div>
+            <div class="form-row"><div class="form-group"><label>Address</label><input type="text" id="profAddress"></div><div class="form-group"><label>Land Area</label><input type="text" id="profLandArea"></div><div class="form-group"><label>Established</label><input type="text" id="profEstablished"></div></div>
+            <div class="form-actions"><button class="btn btn-primary" onclick="saveProfiling()" style="width:auto">Save Profile</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== BLUEPRINT 06 DOCUMENT MANAGEMENT — document requests and processing ===== -->
+    <div class="module" id="module-documents">
+        <div class="card">
+          <div class="card-header"><h3>Document Management</h3><button class="btn btn-primary btn-sm" onclick="openDocumentModal()">+ New Request</button></div>
+          <div class="card-body">
+            <div class="search-bar"><input type="text" id="docSearch" placeholder="Search..." oninput="renderDocuments()"></div>
+            <div class="table-responsive"><table><thead><tr><th>#</th><th>Type</th><th>Resident</th><th>Purpose</th><th>Status</th><th>Date</th><th>OR No.</th><th>Actions</th></tr></thead><tbody id="documentsTable"></tbody></table></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== BLUEPRINT 07 SERVICES — barangay services ===== -->
+    <div class="module" id="module-services">
+        <div class="card">
+          <div class="card-header"><h3>Barangay Services</h3><button class="btn btn-primary btn-sm" onclick="openServiceModal()">+ Add Service</button></div>
+          <div class="card-body"><div class="table-responsive"><table><thead><tr><th>#</th><th>Name</th><th>Description</th><th>Date</th><th>Status</th><th>Beneficiaries</th><th>Actions</th></tr></thead><tbody id="servicesTable"></tbody></table></div></div>
+        </div>
+      </div>
+
+      <!-- ===== BLUEPRINT 08 PAYMENTS — payment records ===== -->
+    <div class="module" id="module-payments">
+        <div class="stats-grid" style="margin-bottom:18px;">
+          <div class="stat-card"><div class="stat-icon green">💵</div><div class="stat-info"><h3 id="payTotalPaid">₱0</h3><p>Total Collected</p></div></div>
+          <div class="stat-card"><div class="stat-icon yellow">⏳</div><div class="stat-info"><h3 id="payTotalPending">₱0</h3><p>Pending Amount</p></div></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>Payment Management</h3></div>
+          <div class="card-body"><div class="table-responsive"><table><thead><tr><th>#</th><th>Resident</th><th>Type</th><th>Amount</th><th>OR No.</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead><tbody id="paymentsTable"></tbody></table></div></div>
+        </div>
+      </div>
+
+      <!-- ===== BLUEPRINT 09 RESIDENT PORTAL — offered documents/services and requests ===== -->
+    <div class="module" id="module-portal">
+  <div class="eb-greeting">
+    <div>
+      <h2 class="eb-greet-title">Good day!</h2>
+    </div>
+    <div class="eb-date">
+      <i class="fas fa-calendar-days"></i>
+      <span><strong class="eb-date-main">—</strong><span class="eb-date-day"></span></span>
+    </div>
+  </div>
+  
+        <div class="portal-welcome"><h2 id="portalWelcome">Welcome</h2><p>Only verified residents can request documents. When a fee is required, pay via GCash and submit your reference number as proof.</p></div>
+        <div class="card portal-seal-card" style="border:2px solid #00AB96;">
+          <div class="card-body" style="text-align:center;padding:24px 16px;">
+            <img src="assets/barangay-seal.png" alt="Barangay Dumanguena Seal" class="portal-barangay-seal" style="display:block;margin:0 auto;width:140px;height:140px;object-fit:contain;">
+            <p style="margin-top:12px;font-size:14px;font-weight:600;color:#076054;">Barangay Dumanguena</p>
+            <p style="font-size:12px;color:#6b7280;">Narra, Palawan</p>
+          </div>
+        </div>
+        <div class="card"><div class="card-header"><h3><i class="fas fa-file-alt"></i> Available Documents</h3></div><div class="card-body"><p style="font-size:13px;color:var(--text-muted);margin:0 0 12px;">Pumili ng dokumento na available para i-request. Makikita sa bawat card kung libre o may bayad.</p><div class="service-cards" id="portalServices"></div></div></div>
+        <div class="card"><div class="card-header"><h3>Quick View — My Requests</h3></div><div class="card-body"><div class="table-responsive"><table><thead><tr><th>Type</th><th>Purpose</th><th>Fee</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead><tbody id="portalDocs"></tbody></table></div></div></div>
+        <div class="card"><div class="card-header"><h3>My Payments</h3></div><div class="card-body"><div class="table-responsive"><table><thead><tr><th>Type</th><th>Amount</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead><tbody id="portalPays"></tbody></table></div></div></div>
+      </div>
+
+      <!-- ===== BLUEPRINT 10 MY REQUESTS — resident request tracking and released PDFs ===== -->
+    <div class="module" id="module-myrequests">
+  <div class="eb-greeting">
+    <div>
+      <h2 class="eb-greet-title">Good day!</h2>
+      <p class="eb-greet-sub">Here's an overview of the barangay's records and requests.</p>
+    </div>
+    <div class="eb-date">
+      <i class="fas fa-calendar-days"></i>
+      <span><strong class="eb-date-main">—</strong><span class="eb-date-day"></span></span>
+    </div>
+  </div>
+  
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-icon blue">📄</div><div class="stat-info"><h3 id="reqStatTotal">0</h3><p>Total Requests</p></div></div>
+          <div class="stat-card"><div class="stat-icon yellow">⏳</div><div class="stat-info"><h3 id="reqStatPending">0</h3><p>In Progress</p></div></div>
+          <div class="stat-card"><div class="stat-icon green">✓</div><div class="stat-info"><h3 id="reqStatReleased">0</h3><p>Released / Ready</p></div></div>
+          <div class="stat-card"><div class="stat-icon purple">💰</div><div class="stat-info"><h3 id="reqStatPay">0</h3><p>Awaiting Payment</p></div></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>My Document Requests</h3></div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table>
+                <thead><tr><th>#</th><th>Type</th><th>Purpose</th><th>Fee</th><th>Status</th><th>Requested</th><th>Released</th><th>Actions</th></tr></thead>
+                <tbody id="myRequestsTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>Document Notifications</h3></div>
+          <div class="card-body"><ul class="notif-list" id="myReqNotifs"></ul></div>
+        </div>
+      </div>
+
+      <!-- ===== BLUEPRINT 11 MY PROFILE — resident profile and ID verification ===== -->
+    <div class="module" id="module-profile">
+  <div class="eb-greeting">
+    <div>
+      <h2 class="eb-greet-title">Good day!</h2>
+      <p class="eb-greet-sub">Here's an overview of the barangay's records and requests.</p>
+    </div>
+    <div class="eb-date">
+      <i class="fas fa-calendar-days"></i>
+      <span><strong class="eb-date-main">—</strong><span class="eb-date-day"></span></span>
+    </div>
+  </div>
+  
+        <div id="profileBody"></div>
+      </div>
+
+      <!-- ===== BLUEPRINT 12 REPORTS — administrative reports ===== -->
+    <div class="module" id="module-reports">
+        <div id="reportStats"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;">
+          <div class="card"><div class="card-header"><h3>Documents by Type</h3></div><div class="card-body"><table><thead><tr><th>Type</th><th>Count</th></tr></thead><tbody id="reportDocs"></tbody></table></div></div>
+          <div class="card"><div class="card-header"><h3>Documents by Status</h3></div><div class="card-body"><table><thead><tr><th>Status</th><th>Count</th></tr></thead><tbody id="reportStatus"></tbody></table></div></div>
+        </div>
+      </div>
+
+      <!-- ===== BLUEPRINT 13 NOTIFICATIONS — system and resident notifications ===== -->
+    <div class="module" id="module-notifications">
+  <div class="eb-greeting">
+    <div>
+      <h2 class="eb-greet-title">Good day!</h2>
+      <p class="eb-greet-sub">Here's an overview of the barangay's records and requests.</p>
+    </div>
+    <div class="eb-date">
+      <i class="fas fa-calendar-days"></i>
+      <span><strong class="eb-date-main">—</strong><span class="eb-date-day"></span></span>
+    </div>
+  </div>
+  
+        <div class="card">
+          <div class="card-header">
+            <h3 id="notifModuleTitle">Notifications</h3>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <button class="btn btn-secondary btn-sm" onclick="markAllRead()">Mark All Read</button>
+              <button class="btn btn-outline btn-sm" onclick="clearReadNotifications()">Clear Read</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div id="notifSections">
+              <ul class="notif-list" id="notifList"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== BLUEPRINT 14 CAPTAIN ADMIN — user and document-type administration ===== -->
+    <div class="module" id="module-admin">
+        <div class="card">
+          <div class="card-header"><h3>Pending Resident Registrations</h3></div>
+          <div class="card-body">
+            <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Approve registrations to create Resident login accounts. They still need Secretary residency verification.</p>
+            <div class="table-responsive"><table><thead><tr><th>#</th><th>Username</th><th>Name</th><th>Address</th><th>Purok</th><th>Contact</th><th>Submitted</th><th>Actions</th></tr></thead><tbody id="pendingRegTable"></tbody></table></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>User Management — Barangay Officials Only</h3><button class="btn btn-primary btn-sm" onclick="openUserModal()">+ Add User</button></div>
+          <div class="card-body"><div class="table-responsive"><table><thead><tr><th>#</th><th>Username</th><th>Name</th><th>Role</th><th>Actions</th></tr></thead><tbody id="usersTable"></tbody></table></div></div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3><i class="fas fa-file-alt"></i> Document Types &amp; Certificate Format</h3>
+            <button class="btn btn-primary btn-sm" onclick="openAddDocType()">+ Add Document Type</button>
+          </div>
+          <div class="card-body">
+            <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">
+              Manage offered documents and link each type to an <strong>official PDF template</strong> in <code>assets/</code>.
+              View, send, and download always use that PDF file.
+            </p>
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr><th>#</th><th>Document Type</th><th>Fee</th><th>PDF Template</th><th>Actions</th></tr>
+                </thead>
+                <tbody id="docTypesTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>System</h3></div>
+          <div class="card-body"><button class="btn btn-danger" onclick="resetData()" style="width:auto">Reset All Data</button></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+\
+<!-- MODALS -->
+<div class="modal-overlay" id="residentModal">
+  <div class="modal">
+    <div class="modal-header"><h3 id="resModalTitle">Add Resident</h3><button class="modal-close" onclick="closeModal('residentModal')">×</button></div>
+    <div class="modal-body">
+      <input type="hidden" id="resId">
+      <div class="form-row"><div class="form-group"><label>First Name *</label><input type="text" id="resFirstName"></div><div class="form-group"><label>Last Name *</label><input type="text" id="resLastName"></div><div class="form-group"><label>Middle Name</label><input type="text" id="resMiddleName"></div></div>
+      <div class="form-row"><div class="form-group"><label>Birth Date</label><input type="date" id="resBirthDate" onchange="var a=calcAge(this.value);var el=document.getElementById('resAgeDisplay');if(el)el.textContent=a===null?'—':(a+' years old');"></div><div class="form-group"><label>Age (auto)</label><p id="resAgeDisplay" style="padding:10px 12px;background:#f3f4f6;border-radius:8px;margin:0;font-weight:600;">—</p></div><div class="form-group"><label>Gender</label><select id="resGender"><option>Male</option><option>Female</option></select></div><div class="form-group"><label>Civil Status</label><select id="resCivilStatus"><option>Single</option><option>Married</option><option>Widowed</option><option>Separated</option></select></div></div>
+      <div class="form-row"><div class="form-group"><label>Address *</label><input type="text" id="resAddress"></div><div class="form-group"><label>Purok</label><input type="text" id="resPurok"></div></div>
+      <div class="form-row"><div class="form-group"><label>Contact</label><input type="text" id="resContact"></div><div class="form-group"><label>Occupation</label><input type="text" id="resOccupation"></div><div class="form-group"><label>Proof of Residency</label><input type="text" id="resProof"></div></div>
+      <div class="form-row"><div class="form-group"><label><input type="checkbox" id="resVoter"> Voter</label></div><div class="form-group"><label><input type="checkbox" id="resSenior"> Senior</label></div><div class="form-group"><label><input type="checkbox" id="resPwd"> PWD</label></div></div>
+      <div style="margin-top:14px;padding-top:12px;border-top:1px solid #e5e7eb;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+          <label style="font-weight:700;font-size:13px;margin:0;">Household Members</label>
+          <button type="button" class="btn btn-sm btn-outline" onclick="addHouseholdMemberRow()" style="width:auto;">+ Add Member</button>
+        </div>
+        <div id="resHouseholdList"></div>
+      </div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('residentModal')">Cancel</button><button class="btn btn-primary" onclick="saveResident()" style="width:auto">Save</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="documentModal">
+  <div class="modal" style="max-width:560px;">
+    <div class="modal-header"><h3 id="docModalTitle">Request Document</h3><button class="modal-close" onclick="closeModal('documentModal')">×</button></div>
+    <div class="modal-body">
+      <!-- Staff: pick resident from list -->
+      <div class="form-group" id="docResidentGroup">
+        <label>Resident</label>
+        <select id="docResident"></select>
+      </div>
+
+      <!-- Resident portal: auto-filled profile (read-only) -->
+      <div id="docResidentAutoFill" style="display:none;background:var(--primary-soft,#eff6ff);border:1px solid var(--border,#bfdbfe);border-radius:10px;padding:14px;margin-bottom:14px;">
+        <p style="font-size:12px;font-weight:700;color:var(--primary,#1d4ed8);margin:0 0 10px;">Your information (from profile)</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;font-size:13px;">
+          <div><span style="color:var(--text-muted);font-size:11px;">Full Name</span><br><strong id="docAutoName">—</strong></div>
+          <div><span style="color:var(--text-muted);font-size:11px;">Civil Status</span><br><strong id="docAutoCivil">—</strong></div>
+          <div><span style="color:var(--text-muted);font-size:11px;">Address</span><br><strong id="docAutoAddress">—</strong></div>
+          <div><span style="color:var(--text-muted);font-size:11px;">Purok</span><br><strong id="docAutoPurok">—</strong></div>
+          <div><span style="color:var(--text-muted);font-size:11px;">Contact</span><br><strong id="docAutoContact">—</strong></div>
+          <div><span style="color:var(--text-muted);font-size:11px;">Status</span><br><strong id="docAutoStatus">—</strong></div>
+        </div>
+        <input type="hidden" id="docResidentIdFixed" value="">
+      </div>
+
+      <!-- Resident portal: request for self vs on behalf of another person -->
+      <div class="form-group" id="docApplicantModeGroup" style="display:none;">
+        <label>Who is this document for?</label>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:6px;">
+          <label style="font-weight:500;font-size:13px;display:flex;align-items:center;gap:6px;cursor:pointer;">
+            <input type="radio" name="docApplicantMode" value="self" checked onchange="onDocApplicantModeChange()"> Myself
+          </label>
+          <label style="font-weight:500;font-size:13px;display:flex;align-items:center;gap:6px;cursor:pointer;">
+            <input type="radio" name="docApplicantMode" value="other" onchange="onDocApplicantModeChange()"> Another person (I'm requesting on their behalf)
+          </label>
+        </div>
+      </div>
+      <div id="docOtherApplicantFields" style="display:none;background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:14px;margin-bottom:14px;">
+        <p style="font-size:12px;font-weight:700;color:#c2410c;margin:0 0 10px;">Information of the requesting applicant</p>
+        <div class="form-group"><label>Full Name *</label><input type="text" id="docOtherName" placeholder="Juan Dela Cruz"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div class="form-group"><label>Civil Status</label>
+            <select id="docOtherCivil"><option value="">Select</option><option>Single</option><option>Married</option><option>Widowed</option><option>Separated</option><option>Divorced</option></select>
+          </div>
+          <div class="form-group"><label>Gender</label>
+            <select id="docOtherGender"><option value="">Select</option><option>Male</option><option>Female</option></select>
+          </div>
+        </div>
+        <div class="form-group"><label>Complete Address *</label><input type="text" id="docOtherAddress" placeholder="House/Street, Purok, Barangay"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div class="form-group"><label>Purok</label><input type="text" id="docOtherPurok" placeholder="e.g. Purok Maligaya"></div>
+          <div class="form-group"><label>Contact Number</label><input type="text" id="docOtherContact" placeholder="09XXXXXXXXX"></div>
+        </div>
+        <div class="form-group"><label>Relationship to You (optional)</label><input type="text" id="docOtherRelation" placeholder="e.g. Mother, Neighbor, Employer"></div>
+        <p style="font-size:11px;color:#9a3412;margin:6px 0 0;">Your verified account remains on record as the one who filed this request. The document itself will be issued using the applicant details above.</p>
+      </div>
+
+      <div class="form-group">
+        <label>Document Type</label>
+        <select id="docType" onchange="onDocTypeFormChange()"></select>
+        <p id="docTypeLockedNote" style="display:none;font-size:12px;color:var(--text-muted);margin-top:6px;">Document type is set from the service you selected.</p>
+      </div>
+
+      <!-- Dynamic fields based on official barangay document wording templates -->
+      <div id="docDynamicFields">
+        <div class="form-group doc-field" data-field="purpose">
+          <label>Purpose *</label>
+          <input type="text" id="docPurpose" placeholder="e.g. Employment, Medical, School enrollment">
+        </div>
+        <div class="form-group doc-field" data-field="yearsResiding" style="display:none;">
+          <label>Years of Residency *</label>
+          <input type="number" id="docYearsResiding" min="0" step="1" placeholder="e.g. 5">
+        </div>
+        <div class="form-group doc-field" data-field="completeAddress" style="display:none;">
+          <label>Complete Address *</label>
+          <input type="text" id="docCompleteAddress" placeholder="House/Street, Purok, Barangay">
+        </div>
+        <div class="form-group doc-field" data-field="monthlyIncome" style="display:none;">
+          <label>Monthly Income (₱) *</label>
+          <input type="number" id="docMonthlyIncome" min="0" step="1" placeholder="e.g. 5000">
+        </div>
+        <div class="form-group doc-field" data-field="employmentStatus" style="display:none;">
+          <label>Employment Status *</label>
+          <select id="docEmploymentStatus">
+            <option value="not a government employee">Not a government employee</option>
+            <option value="unemployed">Unemployed</option>
+            <option value="self-employed">Self-employed</option>
+            <option value="private employee">Private employee</option>
+            <option value="irregular / contractual">Irregular / Contractual</option>
+          </select>
+        </div>
+        <div class="form-group doc-field" data-field="beneficiaryName" style="display:none;">
+          <label>Beneficiary / Applicant Name</label>
+          <input type="text" id="docBeneficiaryName" placeholder="Leave blank to use your name">
+        </div>
+        <div class="form-group doc-field" data-field="businessName" style="display:none;">
+          <label>Business Name *</label>
+          <input type="text" id="docBusinessName" placeholder="Registered business / trade name">
+        </div>
+        <div class="form-group doc-field" data-field="businessAddress" style="display:none;">
+          <label>Complete Business Address *</label>
+          <input type="text" id="docBusinessAddress" placeholder="Business location address">
+        </div>
+        <div class="form-group doc-field" data-field="businessPurpose" style="display:none;">
+          <label>Clearance Purpose *</label>
+          <select id="docBusinessPurpose">
+            <option value="Business Permit Application">Business Permit Application</option>
+            <option value="Business Permit Renewal">Business Permit Renewal</option>
+          </select>
+        </div>
+        <div class="form-group doc-field" data-field="soloCircumstance" style="display:none;">
+          <label>Solo Parent Circumstance *</label>
+          <select id="docSoloCircumstance">
+            <option value="widowed">Widowed</option>
+            <option value="separated">Separated</option>
+            <option value="solely raising a child">Solely raising a child</option>
+            <option value="abandoned by spouse">Abandoned by spouse</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group doc-field" data-field="childrenCount" style="display:none;">
+          <label>Number of Children *</label>
+          <input type="number" id="docChildrenCount" min="1" step="1" placeholder="e.g. 2">
+        </div>
+        <div class="form-group doc-field" data-field="receivingOffice" style="display:none;">
+          <label>Receiving Office / Official *</label>
+          <input type="text" id="docReceivingOffice" placeholder="e.g. MSWD Office, PNP Narra, RHU">
+        </div>
+        <div class="form-group doc-field" data-field="endorsementReason" style="display:none;">
+          <label>Reason for Endorsement *</label>
+          <textarea id="docEndorsementReason" rows="3" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);font-family:inherit;" placeholder="Brief reason for endorsement / referral"></textarea>
+        </div>
+        <div class="form-group doc-field" data-field="birthplace" style="display:none;">
+          <label>Birthplace</label>
+          <input type="text" id="docBirthplace" placeholder="City/Municipality of birth">
+        </div>
+        <div class="form-group doc-field" data-field="incidentDetails" style="display:none;">
+          <label>Incident / Blotter Details *</label>
+          <textarea id="docIncidentDetails" rows="3" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);font-family:inherit;" placeholder="Brief description of the incident"></textarea>
+        </div>
+      </div>
+      <p id="docFormHint" style="font-size:12px;color:var(--text-muted);margin:4px 0 10px;">Personal details are taken from your profile. Fill only the fields required for this document.</p>
+
+      <div id="docFeeInfo" style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:12px;margin-top:8px;">
+        <p style="font-size:13px;margin-bottom:4px;"><strong>Document Fee:</strong> <span id="docFeeAmount" style="color:#1d4ed8;font-weight:700;">₱0</span></p>
+        <p style="font-size:12px;color:#6b7280;margin:0;">Pay via GCash to Treasurer: <strong id="docFeeGcash">0985-180-2847</strong></p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('documentModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveDocument()" style="width:auto">Submit Request</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="docPreviewModal">
+  <div class="modal" style="max-width:560px;">
+    <div class="modal-header"><h3>Document Preview</h3><button class="modal-close" onclick="closeModal('docPreviewModal')">×</button></div>
+    <div class="modal-body" id="docPreviewBody"></div>
+    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('docPreviewModal')">Close</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="pdfViewerModal">
+  <div class="modal pdf-viewer-modal" style="max-width:900px;width:95%;">
+    <div class="modal-header"><h3 id="pdfViewerTitle">PDF Document</h3><button class="modal-close" onclick="closeModal('pdfViewerModal')">×</button></div>
+    <div class="modal-body pdf-viewer-body">
+      <!-- Custom PDF.js viewer (no browser PDF toolbar / download UI) -->
+      <div id="pdfjsToolbar" class="pdfjs-toolbar" style="display:none;">
+        <button type="button" class="btn btn-sm btn-outline" id="pdfjsPrev" onclick="pdfjsChangePage(-1)" title="Previous page">‹ Prev</button>
+        <span class="pdfjs-page-label"><span id="pdfjsPageNum">1</span> / <span id="pdfjsPageCount">1</span></span>
+        <button type="button" class="btn btn-sm btn-outline" id="pdfjsNext" onclick="pdfjsChangePage(1)" title="Next page">Next ›</button>
+        <button type="button" class="btn btn-sm btn-outline" id="pdfjsZoomOut" onclick="pdfjsZoom(-0.15)" title="Zoom out">−</button>
+        <button type="button" class="btn btn-sm btn-outline" id="pdfjsZoomIn" onclick="pdfjsZoom(0.15)" title="Zoom in">+</button>
+      </div>
+      <div id="pdfjsContainer" class="pdfjs-container">
+        <div id="pdfjsLoading" class="pdfjs-loading">Loading PDF…</div>
+        <div id="pdfjsPages" class="pdfjs-pages"></div>
+      </div>
+      <!-- Keep hidden links for staff-only actions -->
+      <a id="pdfViewerOpenLink" href="#" target="_blank" rel="noopener" style="display:none;"></a>
+      <a id="pdfViewerDownloadLink" href="#" download style="display:none;"></a>
+    </div>
+    <div class="modal-footer" id="pdfViewerFooter">
+      <button id="pdfViewerRequestButton" class="btn btn-success" style="display:none;" onclick="requestFromPDFReview()">📝 Request Document</button>
+      <button class="btn btn-secondary" onclick="closeModal('pdfViewerModal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="serviceModal">
+  <div class="modal">
+    <div class="modal-header"><h3>Add Service</h3><button class="modal-close" onclick="closeModal('serviceModal')">×</button></div>
+    <div class="modal-body">
+      <div class="form-group"><label>Name *</label><input type="text" id="svcName"></div>
+      <div class="form-group"><label>Description</label><textarea id="svcDesc" rows="3"></textarea></div>
+      <div class="form-group"><label>Date *</label><input type="date" id="svcDate"></div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('serviceModal')">Cancel</button><button class="btn btn-primary" onclick="saveService()" style="width:auto">Save</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="payCollectModal">
+  <div class="modal">
+    <div class="modal-header"><h3>📱 Verify / Collect Payment</h3><button class="modal-close" onclick="closeModal('payCollectModal')">×</button></div>
+    <div class="modal-body">
+      <input type="hidden" id="collectPayId">
+      <p><strong>Resident:</strong> <span id="collectResident"></span></p>
+      <p><strong>Type:</strong> <span id="collectType"></span></p>
+      <p style="margin-bottom:14px;"><strong>Amount:</strong> <span id="collectAmount" style="font-size:18px;color:#1d4ed8;"></span></p>
+      <div id="collectGuide" style="display:none;background:#fef3c7;border:1px solid #f59e0b;border-radius:8px;padding:12px;margin-bottom:14px;font-size:13px;line-height:1.45;"></div>
+      <div style="background:#eff6ff;border:1px solid #1d4ed8;border-radius:8px;padding:12px;margin-bottom:14px;">
+        <strong>Barangay GCash</strong><br>
+        <span id="gcashDisplayNum">0985-180-28477</span> · <span id="gcashDisplayName">Barangay Dumanguena</span>
+      </div>
+      <div class="form-group"><label>Payment Method *</label>
+        <select id="payMethod" onchange="onPayMethodChange()"><option value="GCash">GCash</option><option value="Cash">Cash</option></select>
+      </div>
+      <div class="form-group" id="gcashRefGroup"><label>GCash Reference Number *</label><input type="text" id="gcashRef" placeholder="e.g. 123456789012"><p style="font-size:11px;color:#6b7280;margin-top:4px;">Review muna this reference in your GCash account. Kapag confirmed, click Verify &amp; Collect.</p></div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('payCollectModal')">Cancel</button><button class="btn btn-primary" onclick="confirmCollectPayment()" style="width:auto">Verify &amp; Collect</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="userModal">
+  <div class="modal">
+    <div class="modal-header"><h3 id="userModalTitle">Add User</h3><button class="modal-close" onclick="closeModal('userModal')">×</button></div>
+    <div class="modal-body">
+      <input type="hidden" id="userEditMode" value="0">
+      <input type="hidden" id="userOriginalUsername" value="">
+      <div class="form-group"><label>Username *</label><input type="text" id="umUsername" placeholder="Login username"></div>
+      <div class="form-group"><label>Password <span id="userPassHint">*</span></label><input type="password" id="umPassword" placeholder="Leave blank to keep current"></div>
+      <div class="form-group"><label>Full Name *</label><input type="text" id="umFullName" placeholder="Display name"></div>
+      <div class="form-group"><label>Role</label><select id="umRole"><option value="Admin">Administrator</option><option value="Secretary">Secretary</option><option value="Treasurer">Treasurer</option></select></div>
+      <p style="font-size:12px;color:#64748b;">You can freely update name and password. Username is locked when editing.</p>
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('userModal')">Cancel</button><button class="btn btn-primary" onclick="saveUser()" style="width:auto">Save User</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="docTypeModal">
+  <div class="modal" style="max-width:640px;">
+    <div class="modal-header"><h3 id="docTypeModalTitle">Add Document Type</h3><button class="modal-close" onclick="closeModal('docTypeModal')">×</button></div>
+    <div class="modal-body">
+      <input type="hidden" id="docTypeEditIndex" value="-1">
+      <div class="form-group"><label>Document Name *</label><input type="text" id="dtName" placeholder="e.g. Certificate of Good Moral Character"></div>
+      <div class="form-group"><label>Fee (₱)</label><input type="number" id="dtFee" min="0" step="1" value="0" placeholder="0 for free"></div>
+      <div class="form-group">
+        <label>PDF Template Path *</label>
+        <input type="text" id="dtPdfAsset" placeholder="assets/Barangay_Clearance_Adion (1).pdf" value="assets/Barangay_Clearance_Adion (1).pdf">
+        <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">
+          Path relative to <code>index.html</code>. Default: <code>assets/Barangay_Clearance_Adion (1).pdf</code><br>
+          This PDF is used when viewing, sending, and downloading this document type.
+        </p>
+      </div>
+      <div class="form-group" style="display:none;">
+        <label>Optional notes</label>
+        <textarea id="dtTemplate" rows="2" style="width:100%;font-family:inherit;padding:10px;border-radius:8px;border:1px solid var(--border);resize:vertical;" placeholder="Optional internal notes"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('docTypeModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveDocType()" style="width:auto">Save Document Type</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="secDetailModal">
+  <div class="modal">
+    <div class="modal-header"><h3>Resident Details</h3><button class="modal-close" onclick="closeModal('secDetailModal')">×</button></div>
+    <div class="modal-body" id="secDetailBody"></div>
+    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('secDetailModal')">Close</button></div>
+  </div>
+</div>
+
+
+<div class="modal-overlay" id="ocrModal">
+  <div class="modal" style="max-width:560px;">
+    <div class="modal-header"><h3>🪪 National ID Upload</h3><button class="modal-close" onclick="closeModal('ocrModal')">×</button></div>
+    <div class="modal-body">
+      <div id="ocrProgress" style="display:none;text-align:center;padding:20px;">
+        <div style="font-size:40px;margin-bottom:10px;">🔍</div>
+        <p id="ocrStatusText" style="font-weight:600;margin-bottom:8px;">Reading ID…</p>
+        <div style="background:#e5e7eb;border-radius:8px;height:10px;overflow:hidden;max-width:320px;margin:0 auto 8px;">
+          <div id="ocrBar" style="background:#0d9488;height:100%;width:0%;transition:width 0.3s;"></div>
+        </div>
+        <p id="ocrPercent" style="font-size:12px;color:#6b7280;">0%</p>
+      </div>
+      <div id="ocrResult" style="display:none;">
+        <div style="margin-bottom:14px;">
+          <label style="font-size:12px;font-weight:600;color:#6b7280;">ID Image</label>
+          <img id="ocrPreviewImg" src="" alt="National ID" style="width:100%;border-radius:10px;border:1px solid #d1fae5;margin-top:6px;background:#f8fafc;">
+        </div>
+        <div class="form-group"><label>Detected ID Number (PhilSys)</label><input type="text" id="ocrIdNumber" placeholder="XXXX-XXXX-XXXX-XXXX"></div>
+        <div class="form-group"><label>Detected Full Name</label><input type="text" id="ocrName" placeholder="Full name from ID"></div>
+        <div class="form-row">
+          <div class="form-group"><label>Detected Sex / Gender</label><input type="text" id="ocrGender" placeholder="Male / Female"></div>
+          <div class="form-group"><label>Detected Birth Date</label><input type="text" id="ocrBirthDate" placeholder="YYYY-MM-DD or as on ID"></div>
+        </div>
+        <div class="form-group"><label>Detected Address (from ID)</label><input type="text" id="ocrAddress" placeholder="Address line from ID"></div>
+        <p style="font-size:12.5px;color:#5A7B76;background:#F0FDFA;border:1px solid #D1FAE5;border-radius:10px;padding:10px 12px;margin:8px 0 0;line-height:1.45;">
+          <strong>Note:</strong> Your ID image will be sent for <strong>Secretary review</strong>. Final verification is done by the Secretary using this uploaded photo. You may correct the detected fields if needed.
+        </p>
+        <!-- hidden helpers retained for JS compatibility -->
+        <p id="ocrMatchStatus" style="display:none;"></p>
+        <div id="ocrMatchBarWrap" style="display:none;"><div id="ocrMatchBar"></div></div>
+        <p id="ocrMatchDetail" style="display:none;"></p>
+        <pre id="ocrRawText" style="display:none;"></pre>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('ocrModal')">Cancel</button>
+      <button class="btn btn-primary" id="ocrConfirmBtn" style="width:auto;display:none;" onclick="confirmOcrVerification()">Submit ID for Secretary Review</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal-overlay" id="webcamModal">
+  <div class="modal" style="max-width:520px;">
+    <div class="modal-header"><h3>📷 Scan National ID</h3><button class="modal-close" onclick="closeWebcamModal()">×</button></div>
+    <div class="modal-body" style="text-align:center;">
+      <p id="webcamStatus" style="font-size:13px;color:#6b7280;margin-bottom:12px;">Starting camera…</p>
+      <div style="position:relative;background:#000;border-radius:12px;overflow:hidden;max-width:100%;aspect-ratio:4/3;">
+        <video id="webcamVideo" autoplay playsinline muted style="width:100%;height:100%;object-fit:cover;"></video>
+        <div style="position:absolute;inset:12%;border:2px dashed rgba(255,255,255,0.7);border-radius:8px;pointer-events:none;"></div>
+      </div>
+      <p style="font-size:12px;color:#6b7280;margin-top:10px;">Position your Philippine National ID (PhilSys) inside the frame</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeWebcamModal()">Cancel</button>
+      <button class="btn btn-primary" style="width:auto;" onclick="captureWebcamId()">📸 Capture ID</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal-overlay" id="accountModal">
+  <div class="modal" style="max-width:420px;">
+    <div class="modal-header"><h3>My Account</h3><button class="modal-close" onclick="closeModal('accountModal')">×</button></div>
+    <div class="modal-body">
+      <p style="font-size:13px;color:#64748b;margin-bottom:12px;">Update your display name and password.</p>
+      <div class="form-group"><label>Username</label><input type="text" id="accUsername" disabled></div>
+      <div class="form-group"><label>Full Name *</label><input type="text" id="accName"></div>
+      <div class="form-group"><label>New Password</label><input type="password" id="accPassword" placeholder="Leave blank to keep current"></div>
+      <div class="form-group"><label>Confirm Password</label><input type="password" id="accPassword2" placeholder="Confirm new password"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('accountModal')">Cancel</button>
+      <button class="btn btn-primary" style="width:auto;" onclick="saveMyAccount()">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="modal-overlay" id="resGcashModal">
+  <div class="modal" style="max-width:420px;">
+    <div class="modal-header"><h3>Pay via GCash</h3><button class="modal-close" onclick="closeModal('resGcashModal')">×</button></div>
+    <div class="modal-body">
+      <input type="hidden" id="resGcashPayId">
+      <p style="font-size:13px;margin-bottom:12px;">Send payment to the barangay GCash account, then enter your <strong>GCash reference number</strong> as proof of payment. The Treasurer will review it in their GCash account before verifying.</p>
+      <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:14px;margin-bottom:14px;text-align:center;">
+        <p style="font-size:12px;color:#6b7280;margin-bottom:4px;">GCash Number</p>
+        <p style="font-size:20px;font-weight:700;color:#1d4ed8;" id="resGcashNum">0985-180-2847</p>
+        <p style="font-size:13px;color:#6b7280;" id="resGcashAccName">Barangay Dumanguena</p>
+      </div>
+      <div class="form-group"><label>Payment Type</label><p id="resGcashType" style="font-weight:600;">—</p></div>
+      <div class="form-group"><label>Amount</label><p id="resGcashAmount" style="font-size:18px;font-weight:700;color:#1d4ed8;">₱0</p></div>
+      <div class="form-group"><label>GCash Reference Number *</label><input type="text" id="resGcashRef" placeholder="e.g. 123456789012"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('resGcashModal')">Cancel</button>
+      <button class="btn btn-primary" style="width:auto;" onclick="submitResidentGcashPay()">Submit Proof of Payment</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- >>> TITLE: PAYMENT RECEIPT MODAL <<< -->
+<div class="modal-overlay" id="paymentReceiptModal">
+  <div class="modal" style="max-width:480px;">
+    <div class="modal-header"><h3><i class="fas fa-receipt"></i> Payment Receipt</h3>
+      <button class="modal-close" onclick="closeModal('paymentReceiptModal')">×</button>
+    </div>
+    <div class="modal-body" id="paymentReceiptBody"></div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('paymentReceiptModal')">Close</button>
+      <button class="btn btn-primary" onclick="printPaymentReceiptWindow()"><i class="fas fa-print"></i> Print Receipt</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- >>> TITLE: CONFIRM ACTION MODAL (formal delete/confirm card) <<< -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal eb-confirm-modal" style="max-width:420px;">
+    <div class="modal-header">
+      <h3 id="confirmModalTitle"><i class="fas fa-triangle-exclamation"></i> Confirm</h3>
+      <button type="button" class="modal-close" onclick="closeConfirmModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="eb-confirm-icon" id="confirmModalIcon"><i class="fas fa-trash-can"></i></div>
+      <p id="confirmModalMessage" class="eb-confirm-message">Are you sure?</p>
+    </div>
+    <div class="modal-footer eb-confirm-footer">
+      <button type="button" class="btn btn-secondary" id="confirmModalCancel" onclick="closeConfirmModal()">Cancel</button>
+      <button type="button" class="btn btn-danger" id="confirmModalOk">Delete</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!-- pdf-lib: load official PDF assets and write resident data onto them -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<!-- PDF.js custom viewer (no native browser PDF toolbar) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+  if (window.pdfjsLib) {
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  }
+</script>
+<script src="js/app.js"></script>
+<script src="js/ebarangay-ui.js"></script>
+</body>
+</html>
